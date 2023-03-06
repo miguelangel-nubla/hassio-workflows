@@ -15,7 +15,7 @@ on:
         required: false
         type: string
       repository_edge:
-        default: "repository-edge"
+        default: "hassio-repository"
         description: The name of the edge repository
         required: false
         type: string
