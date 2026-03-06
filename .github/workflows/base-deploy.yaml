@@ -78,7 +78,7 @@ jobs:
       - name: 🏗 Set up QEMU
         uses: docker/setup-qemu-action@v3.4.0
       - name: 🏗 Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3.12.0
+        uses: docker/setup-buildx-action@v4.0.0
       - name: 🏗 Set up Codenotary Community Attestation Service (CAS)
         uses: frenck/action-setup-cas@v0.1.1
         with:
@@ -165,7 +165,7 @@ jobs:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v6
       - name: 🏗 Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3.12.0
+        uses: docker/setup-buildx-action@v4.0.0
       - name: 🚀 Create manifest
         shell: bash
         # yamllint disable rule:line-length
