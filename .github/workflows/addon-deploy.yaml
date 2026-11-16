@@ -223,7 +223,7 @@ jobs:
           event-type: update
           client-payload: >
             {
-              "addon": "${{ needs.information.outputs.slug }}",
+              "app": "${{ needs.information.outputs.slug }}",
               "name": "${{ needs.information.outputs.name }}",
               "repository": "${{ github.repository }}",
               "version": "${{ needs.information.outputs.version }}"
@@ -249,7 +249,7 @@ jobs:
           event-type: update
           client-payload: >
             {
-              "addon": "${{ needs.information.outputs.slug }}",
+              "app": "${{ needs.information.outputs.slug }}",
               "name": "${{ needs.information.outputs.name }}",
               "repository": "${{ github.repository }}",
               "version": "${{ github.event.release.tag_name }}"
@@ -273,7 +273,7 @@ jobs:
           event-type: update
           client-payload: >
             {
-              "addon": "${{ needs.information.outputs.slug }}",
+              "app": "${{ needs.information.outputs.slug }}",
               "name": "${{ needs.information.outputs.name }}",
               "repository": "${{ github.repository }}",
               "version": "${{ github.event.release.tag_name }}"

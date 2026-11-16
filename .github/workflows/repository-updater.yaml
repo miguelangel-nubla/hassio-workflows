@@ -8,20 +8,24 @@ on:
       UPDATER_TOKEN:
         required: true
 
+# The updater commits with UPDATER_TOKEN; the workflow's own token needs nothing more.
+permissions:
+  contents: read
+
+# One run at a time: a run that finds the apps repository changed under it
+# stops instead of committing, so queue them up.
+concurrency:
+  group: repository-updater
+  cancel-in-progress: false
+
 jobs:
   publish:
-    name: Publish add-on update
+    name: Publish app update
     runs-on: ubuntu-latest
     steps:
-      - name: 🔂 Wait for other runs to complete
-        uses: softprops/turnstyle@v2
-        with:
-          continue-after-seconds: 1200
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 🚀 Run Repository Updater
-        uses: hassio-addons/repository-updater@v2.0.1
+        uses: hassio-addons/repository-updater@c7cece7bb502aeae1f3fdcf2b02a5fa200add71d # v3.0.0
         with:
-          addon: ${{ github.event.client_payload.addon }}
+          app: ${{ github.event.client_payload.app }}
           repository: ${{ github.repository }}
           token: ${{ secrets.UPDATER_TOKEN }}
