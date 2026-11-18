@@ -4,6 +4,14 @@ name: Repository Updater
 # yamllint disable-line rule:truthy
 on:
   workflow_call:
+    inputs:
+      app:
+        description: >-
+          The slug of the app to check. Empty: the one a repository_dispatch names, or, without
+          one, every app.
+        required: false
+        type: string
+        default: ""
     secrets:
       UPDATER_TOKEN:
         required: true
@@ -26,6 +34,6 @@ jobs:
       - name: 🚀 Run Repository Updater
         uses: hassio-addons/repository-updater@c7cece7bb502aeae1f3fdcf2b02a5fa200add71d # v3.0.0
         with:
-          app: ${{ github.event.client_payload.app }}
+          app: ${{ inputs.app || github.event.client_payload.app }}
           repository: ${{ github.repository }}
           token: ${{ secrets.UPDATER_TOKEN }}
